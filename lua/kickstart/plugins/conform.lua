@@ -4,12 +4,12 @@ return {
     lazy = false,
     keys = {
       {
-        '<leader>f',
+        '<leader>cf',
         function()
           require('conform').format { async = true, lsp_fallback = true }
         end,
         mode = '',
-        desc = '[F]ormat buffer',
+        desc = '[C]ode [F]ormat buffer',
       },
     },
     opts = {
@@ -26,6 +26,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        rust = { "rustfmt" }
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
