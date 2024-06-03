@@ -141,7 +141,6 @@ return {
             },
           },
         },
-        -- TODO: Fix for NixOS?
         clangd = {
           cmd = {
             "/usr/bin/schroot",
@@ -157,6 +156,8 @@ return {
         jsonls = {},
         biome = {},
         rust_analyzer = {},
+        nixd = {},
+        taplo = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:

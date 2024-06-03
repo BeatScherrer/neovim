@@ -1,15 +1,15 @@
 return {
   { -- Autoformat
-    'stevearc/conform.nvim',
+    "stevearc/conform.nvim",
     lazy = false,
     keys = {
       {
-        '<leader>cf',
+        "<leader>cf",
         function()
-          require('conform').format { async = true, lsp_fallback = true }
+          require("conform").format({ async = true, lsp_fallback = true })
         end,
-        mode = '',
-        desc = '[C]ode [F]ormat buffer',
+        mode = "",
+        desc = "[C]ode [F]ormat buffer",
       },
     },
     opts = {
@@ -25,8 +25,9 @@ return {
         }
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
-        rust = { "rustfmt" }
+        lua = { "stylua" },
+        rust = { "rustfmt" },
+        nix = { "nixfmt" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

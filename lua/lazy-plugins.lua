@@ -12,8 +12,6 @@
 require("lazy").setup({
   "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 
-  -- Some utility plugins
-  "nvim-tree/nvim-web-devicons",
   "nvim-lua/plenary.nvim",
 
   -- NOTE: Plugins can also be added by using a table,
@@ -29,8 +27,6 @@ require("lazy").setup({
   { "numToStr/Comment.nvim", opts = {} },
 
   require("kickstart/plugins/which-key"),
-  require("kickstart/plugins/lspconfig"),
-  require("kickstart/plugins/conform"),
   require("kickstart/plugins/cmp"),
   require("kickstart/plugins/todo-comments"),
   require("kickstart/plugins/mini"),
