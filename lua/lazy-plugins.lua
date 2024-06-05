@@ -28,8 +28,6 @@ require("lazy").setup({
 
   require("kickstart/plugins/which-key"),
   require("kickstart/plugins/cmp"),
-  require("kickstart/plugins/todo-comments"),
-  require("kickstart/plugins/mini"),
   require("kickstart/plugins/treesitter"),
   require("kickstart.plugins.indent_line"),
   require("kickstart.plugins.debug"),
