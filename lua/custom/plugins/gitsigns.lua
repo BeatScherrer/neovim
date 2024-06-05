@@ -15,6 +15,19 @@ return {
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
       },
+      current_line_blame = true,
+      current_line_blame_opts = {
+        vit_text = true,
+        virt_text_pos = "right_align",
+        delay = 1000,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
+      current_line_blame_formatter = "<author>, <author_time:%d.%m.%Y> - <summary>",
+      current_line_blame_formatter_opts = {
+        relative_time = false,
+      },
+
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
 

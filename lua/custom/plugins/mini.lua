@@ -17,6 +17,12 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require("mini.surround").setup()
 
+      require("mini.indentscope").setup({
+        -- symbol = "▏",
+        symbol = "│",
+        options = { try_as_border = true },
+      })
+
       -- require("mini.tabline").setup()
 
       -- Simple and easy statusline.
