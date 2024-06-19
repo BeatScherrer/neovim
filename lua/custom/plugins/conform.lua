@@ -32,6 +32,7 @@ return {
         nix = { "nixfmt" },
         typescriptreact = { "biome" },
         typescript = { "biome" },
+        python = { "pyright" },
       },
     },
   },

@@ -161,6 +161,17 @@ return {
         tsserver = {},
         angularls = {},
         omnisharp = {},
+        pyright = {
+          -- TODO: How to get the
+          -- cmd = {
+          --   "/usr/bin/schroot",
+          --   "-ic",
+          --   "chroot:ub22",
+          --   "--",
+          --   "/home/beat/.local/share/nvim_new/mason/bin/pyright-langserver",
+          --   "--stdio",
+          -- },
+        },
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
