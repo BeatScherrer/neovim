@@ -31,6 +31,7 @@ return {
         ["<leader>h"] = { name = "Git [H]unk", _ = "which_key_ignore" },
         ["<leader>u"] = { name = "[U]ser Interface", _ = "which_key_ignore" },
         ["<leader>un"] = { name = "[N]oice", _ = "which_key_ignore" },
+        ["<leader><Tab>"] = { name = "[T]ab", _ = "which_key_ignore" },
       })
       -- visual mode
       require("which-key").register({

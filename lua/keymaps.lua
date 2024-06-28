@@ -39,6 +39,12 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv") -- move line up(v)
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv") -- move line down(v)
 
+vim.keymap.set("n", "<leader>mm", "<cmd>Make<cr>")
+
+-- Tabs
+vim.keymap.set("n", "<leader><Tab><Tab>", "<cmd>tabnew<cr>", { desc = "[A]dd" })
+vim.keymap.set("n", "<leader><Tab>d", "<cmd>tabc<cr>", { desc = "[T]ab" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 

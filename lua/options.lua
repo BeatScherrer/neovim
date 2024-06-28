@@ -59,6 +59,7 @@ vim.opt.scrolloff = 10
 
 -- vim: ts=2 sts=2 sw=2 et
 
+vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 SCHROOT_NAME = "ub22"
