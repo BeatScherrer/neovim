@@ -20,33 +20,34 @@ return {
     config = function() -- This is the function that runs, AFTER loading
       require("which-key").setup()
 
+      -- FIXME: `add` apparently does not exist in this version...
       -- Document existing key chains
-      require("which-key").add({
-        { "<leader><Tab>", group = "[T]ab" },
-        { "<leader><Tab>_", hidden = true },
-        { "<leader>c", group = "[C]ode" },
-        { "<leader>c_", hidden = true },
-        { "<leader>d", group = "[D]ocument" },
-        { "<leader>d_", hidden = true },
-        { "<leader>h", group = "Git [H]unk" },
-        { "<leader>h_", hidden = true },
-        { "<leader>r", group = "[R]ename" },
-        { "<leader>r_", hidden = true },
-        { "<leader>s", group = "[S]earch" },
-        { "<leader>s_", hidden = true },
-        { "<leader>t", group = "[T]oggle" },
-        { "<leader>t_", hidden = true },
-        { "<leader>u", group = "[U]ser Interface" },
-        { "<leader>u_", hidden = true },
-        { "<leader>un", group = "[N]oice" },
-        { "<leader>un_", hidden = true },
-        { "<leader>w", group = "[W]orkspace" },
-        { "<leader>w_", hidden = true },
-      })
+      -- require("which-key").register({
+      --   { "<leader><Tab>", group = "[T]ab" },
+      --   { "<leader><Tab>_", hidden = true },
+      --   { "<leader>c", group = "[C]ode" },
+      --   { "<leader>c_", hidden = true },
+      --   { "<leader>d", group = "[D]ocument" },
+      --   { "<leader>d_", hidden = true },
+      --   { "<leader>h", group = "Git [H]unk" },
+      --   { "<leader>h_", hidden = true },
+      --   { "<leader>r", group = "[R]ename" },
+      --   { "<leader>r_", hidden = true },
+      --   { "<leader>s", group = "[S]earch" },
+      --   { "<leader>s_", hidden = true },
+      --   { "<leader>t", group = "[T]oggle" },
+      --   { "<leader>t_", hidden = true },
+      --   { "<leader>u", group = "[U]ser Interface" },
+      --   { "<leader>u_", hidden = true },
+      --   { "<leader>un", group = "[N]oice" },
+      --   { "<leader>un_", hidden = true },
+      --   { "<leader>w", group = "[W]orkspace" },
+      --   { "<leader>w_", hidden = true },
+      -- })
       -- visual mode
-      require("which-key").add({
-        { "<leader>h", desc = "Git [H]unk", mode = "v" },
-      }, { mode = "v" })
+      -- require("which-key").add({
+      --   { "<leader>h", desc = "Git [H]unk", mode = "v" },
+      -- }, { mode = "v" })
     end,
   },
 }
