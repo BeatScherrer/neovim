@@ -6,10 +6,18 @@ return {
       {
         "<leader>cf",
         function()
-          require("conform").format({ async = true, lsp_fallback = true })
+          require("conform").format({ async = true, lsp_fallback = false })
         end,
-        mode = "",
-        desc = "[C]ode [F]ormat buffer",
+        mode = { "n", "v" },
+        desc = "[C]ode [f]ormat buffer",
+      },
+      {
+        "<leader>cfi",
+        function()
+          require("conform").format({ async = true, lsp_fallback = false, formatters = { "injected " } })
+        end,
+        mode = { "n", "v" },
+        desc = "[C]ode [f]ormat [i]njected languages",
       },
     },
     opts = {
@@ -33,6 +41,14 @@ return {
         typescriptreact = { "biome" },
         typescript = { "biome" },
         python = { "pyright" },
+        sh = { "shfmt" },
+        bash = { "shfmt" },
+      },
+      formatters = {
+        mt_shfmt = {
+          command = "shfmt",
+          prepend_args = { "-i", "2" },
+        },
       },
     },
   },
