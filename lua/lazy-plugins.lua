@@ -26,13 +26,6 @@ require("lazy").setup({
   -- "gc" to comment visual regions/lines
   { "numToStr/Comment.nvim", opts = {} },
 
-  require("kickstart/plugins/which-key"),
-  require("kickstart/plugins/cmp"),
-  require("kickstart/plugins/treesitter"),
-  require("kickstart.plugins.debug"),
-  require("kickstart.plugins.lint"),
-  require("kickstart.plugins.autopairs"),
-
   { import = "custom.plugins" },
 }, {
   ui = {
