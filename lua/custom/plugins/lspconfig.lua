@@ -164,7 +164,7 @@ return {
         rust_analyzer = {},
         nixd = {},
         taplo = {},
-        tsserver = {},
+        ts_ls = {},
         angularls = {},
         omnisharp = {},
         pyright = {
