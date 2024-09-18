@@ -62,6 +62,9 @@ vim.opt.scrolloff = 10
 vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+
 SCHROOT_NAME = "ub22"
 vim.opt.makeprg = "cd build && schroot -c chroot:" .. SCHROOT_NAME .. ' -- /bin/bash -ic "mm"; cd - '
 
