@@ -40,6 +40,8 @@ return {
         nix = { "nixfmt" },
         typescriptreact = { "biome" },
         typescript = { "biome" },
+        json = { "prettier" },
+        html = { "prettier" },
         python = { "pyright" },
         sh = { "mt_shfmt" },
         bash = { "mt_shfmt" },
