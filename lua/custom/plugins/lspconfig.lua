@@ -153,7 +153,7 @@ return {
             "-c",
             "chroot:ub22",
             "--",
-            "/usr/bin/clangd-18",
+            "/usr/bin/clangd-19",
             "--path-mappings=/usr=/srv/chroot/ub22/usr,/opt=/srv/chroot/ub22/opt",
             "--clang-tidy",
             "--header-insertion-decorators",
