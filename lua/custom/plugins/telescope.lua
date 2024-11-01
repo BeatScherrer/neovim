@@ -88,6 +88,12 @@ return {
       vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { desc = "[S]earch [R]eferences" })
       vim.keymap.set("n", "<leader>ss", builtin.lsp_document_symbols, { desc = "[S]earch [S]ymbols" })
       vim.keymap.set("n", "<leader>sS", builtin.lsp_workspace_symbols, { desc = "[S]earch Workspace [S]ymbols" })
+      vim.keymap.set(
+        "n",
+        "<leader>sB",
+        "<cmd>lua require('telescope.builtin').live_grep({ cwd = vim.fn.expand('%:p:h')})<CR>",
+        { desc = "[S]earch in directory of [b]uffer" }
+      )
       vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 
       -- Slightly advanced example of overriding default behavior and theme
