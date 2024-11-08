@@ -6,6 +6,9 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+vim.fn.sign_define("DapBreakpoint", { text = "" })
+vim.fn.sign_define("DapStopped", { text = "▶️" })
+
 return {
   -- NOTE: Yes, you can install new plugins here!
   "mfussenegger/nvim-dap",
@@ -77,7 +80,7 @@ return {
     { "<leader>dk", function() require("dap").up() end, desc = "Up" },
     { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
     { "<leader>do", function() require("dap").step_out() end, desc = "Step Out" },
-    { "<S-F11>", function() require("dap").step_out() end, desc = "Step Out" },
+    { "<F12>", function() require("dap").step_out() end, desc = "Step Out" },
     { "<leader>dO", function() require("dap").step_over() end, desc = "Step Over" },
     { "<F10>", function() require("dap").step_over() end, desc = "Step Over" },
     { "<leader>dp", function() require("dap").pause() end, desc = "Pause" },
@@ -87,6 +90,7 @@ return {
     { "<leader>dt", function() require("dap").terminate() end, desc = "Terminate" },
     { "<S-F5>", function() require("dap").terminate() end, desc = "Terminate" },
     { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
+
   },
   -- stylua: ignore end
   config = function()
