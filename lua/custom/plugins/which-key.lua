@@ -29,6 +29,9 @@ return {
         { "<leader>d", group = "[D]ocument" },
         { "<leader>d_", hidden = true },
         { "<leader>h", group = "Git [H]unk" },
+        { "<leader>f", group = "[F]ind" },
+        { "<leader>g", group = "[G]it" },
+        { "<leader>m", group = "[M]ake" },
         { "<leader>h_", hidden = true },
         { "<leader>r", group = "[R]ename" },
         { "<leader>r_", hidden = true },
@@ -42,6 +45,7 @@ return {
         { "<leader>un_", hidden = true },
         { "<leader>w", group = "[W]orkspace" },
         { "<leader>w_", hidden = true },
+        { "<leader>x", group = "Todo" },
       })
       -- visual mode
       require("which-key").add({
