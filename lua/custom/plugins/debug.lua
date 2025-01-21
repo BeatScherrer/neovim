@@ -6,8 +6,8 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
-vim.fn.sign_define("DapBreakpoint", { text = "" })
-vim.fn.sign_define("DapStopped", { text = "▶️" })
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "debugBreakpoint" })
+vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "debugBreakpoint" })
 
 return {
   -- NOTE: Yes, you can install new plugins here!
