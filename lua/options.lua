@@ -2,7 +2,6 @@
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -57,6 +56,12 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Stay in visual selection after action
+-- vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv", { silent = true })
+-- vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv", { silent = true })
+vim.keymap.set("v", "<", "<gv", { silent = true })
+vim.keymap.set("v", ">", ">gv", { silent = true })
+
 -- vim: ts=2 sts=2 sw=2 et
 
 vim.opt.foldlevelstart = 99
@@ -66,7 +71,7 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
 SCHROOT_NAME = "ub22"
-vim.opt.makeprg = "cd build && schroot -c chroot:" .. SCHROOT_NAME .. ' -- /bin/bash -ic "mm"; cd - '
+vim.opt.makeprg = "mm"
 
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil

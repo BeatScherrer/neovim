@@ -89,6 +89,7 @@ return {
               luasnip.jump(-1)
             end
           end, { "i", "s" }),
+          ["<A-y>"] = require("minuet").make_cmp_map(),
 
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -97,6 +98,20 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+          { name = "minuet" },
+        },
+        performance = {
+          debounce = 60,
+          throttle = 30,
+          -- It is recommended to increase the timeout duration due to
+          -- the typically slower response speed of LLMs compared to
+          -- other completion sources. This is not needed when you only
+          -- need manual completion.
+          fetching_timeout = 2000,
+          filtering_context_budget = 3,
+          confirm_resolve_timeout = 80,
+          async_budget = 1,
+          max_view_entries = 200,
         },
       })
     end,

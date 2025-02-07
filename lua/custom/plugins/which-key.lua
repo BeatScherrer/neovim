@@ -24,6 +24,7 @@ return {
       require("which-key").add({
         { "<leader><Tab>", group = "[T]ab" },
         { "<leader><Tab>_", hidden = true },
+        { "<leader>a", group = "[A]I" },
         { "<leader>c", group = "[C]ode" },
         { "<leader>c_", hidden = true },
         { "<leader>d", group = "[D]ocument" },
