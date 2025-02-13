@@ -70,8 +70,8 @@ vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
-SCHROOT_NAME = "ub22"
-vim.opt.makeprg = "mm"
+vim.opt.makeprg =
+  'cd build && CCACHE_BASEDIR=${PWD}; echo "ninja build (CCACHE_BASEDIR set) (MAKE_CORES:${MAKE_CORES})"; ninja -j${MAKE_CORES}'
 
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
