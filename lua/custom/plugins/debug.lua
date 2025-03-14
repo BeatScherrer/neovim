@@ -6,8 +6,8 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "debugBreakpoint" })
-vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "debugBreakpoint" })
+vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "debugBreakpoint" })
+vim.fn.sign_define("DapStopped", { text = "", texthl = "debugBreakpoint" })
 
 return {
   -- NOTE: Yes, you can install new plugins here!
@@ -108,6 +108,12 @@ return {
       command = "gdb",
       args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
     }
+    dap.adapters.codelldb = {
+      type = "server",
+      port = "${port}",
+      command = "/home/beat/.local/share/nvim/mason/bin/codelldb", -- adjust as needed, must be absolute path
+      args = { "--port", "${port}" },
+    }
 
     local dapui = require("dapui")
 
@@ -166,16 +172,6 @@ return {
 
     dap.configurations.cpp = {
       {
-        name = "Launch file",
-        type = "cppdbg",
-        request = "launch",
-        program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-        end,
-        cwd = "${workspaceFolder}",
-        stopAtEntry = true,
-      },
-      {
         name = "Remote",
         type = "cppdbg",
         request = "launch",
@@ -197,7 +193,7 @@ return {
         end,
       },
       {
-        name = "Local vscode",
+        name = "Launch cppdbg",
         type = "cppdbg",
         request = "launch",
         MIMode = "gdb",
@@ -210,15 +206,24 @@ return {
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
       },
+      -- {
+      --   name = "Launch gdb",
+      --   type = "gdb",
+      --   request = "launch",
+      --   cwd = "${workspaceFolder}",
+      --   program = function()
+      --     return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+      --   end,
+      -- },
       {
-        name = "Local gdb",
-        type = "gdb",
+        name = "codelldb attach",
+        type = "codelldb",
         request = "attach",
-        target = "localhost:7777",
-        cwd = "${workspaceFolder}",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
       },
     }
 
