@@ -98,10 +98,15 @@ return {
     dap.adapters.cppdbg = {
       id = "cppdbg",
       type = "executable",
-      command = "/home/beat/.vscode/extensions/ms-vscode.cpptools-1.22.10-linux-x64/debugAdapters/bin/OpenDebugAD7",
+      command = "/home/beat/.vscode/extensions/ms-vscode.cpptools-1.24.2-linux-x64/debugAdapters/bin/OpenDebugAD7",
       options = {
         detached = false,
       },
+    }
+    dap.adapters.gdb = {
+      type = "executable",
+      command = "gdb",
+      args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
     }
 
     local dapui = require("dapui")
@@ -185,13 +190,14 @@ return {
           -- TODO: maybe we can attach the gdbserver on the remote as part of launching the debugger
 
           -- local target = "root@" .. miDebuggerServerAddress
-          local executable = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+          local executable =
+            vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
           -- os.execute("ssh -c root@" .. target .. "gdbserver --attach :7777 $(pgrep " .. executable")")
           return executable
         end,
       },
       {
-        name = "Local",
+        name = "Local vscode",
         type = "cppdbg",
         request = "launch",
         MIMode = "gdb",
@@ -199,6 +205,16 @@ return {
           return "localhost:7777"
         end,
         miDebuggerPath = "/usr/bin/gdb",
+        cwd = "${workspaceFolder}",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+        end,
+      },
+      {
+        name = "Local gdb",
+        type = "gdb",
+        request = "attach",
+        target = "localhost:7777",
         cwd = "${workspaceFolder}",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
