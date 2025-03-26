@@ -95,6 +95,9 @@ return {
         lineFoldingOnly = true,
       }
 
+      -- NOTE: neocmake snippet support
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -104,6 +107,7 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
       local servers = {
         lua_ls = {
           mason = false,
@@ -129,6 +133,13 @@ return {
             "--header-insertion-decorators",
             "--compile-commands-dir=build",
           },
+        },
+        neocmake = {
+          cmd = {
+            "/nix/store/y46mpa2xb2gdmq65xwqn44sgv73ydc5a-neocmakelsp-0.8.21/bin/neocmakelsp",
+            "--stdio",
+          },
+          capabilities = capabilities,
         },
         jsonls = {},
         biome = {},
