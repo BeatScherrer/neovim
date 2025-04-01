@@ -17,7 +17,7 @@ return {
     --- @type AvanteProvider
     ollama = {
       -- api_key_name = "",
-      model = "codellama:7b-instruct",
+      model = "codestral",
       -- parse_curl_args = function(opts, code_opts)
       --   return {
       --     url = opts.endpoint .. "/chat/completions",
