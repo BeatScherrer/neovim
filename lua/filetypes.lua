@@ -18,6 +18,7 @@ vim.filetype.add({
   },
   pattern = {
     [".*/.ssh/config.d/.*"] = "sshconfig",
+    [".*/.ssh"] = "sshconfig",
     [".*.xacro"] = "xml",
     [".*.sdf"] = "xml",
     -- [".*&zwj;/etc/foo/.*"] = "fooscript",
