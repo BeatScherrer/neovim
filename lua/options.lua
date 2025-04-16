@@ -70,8 +70,12 @@ vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
-vim.opt.makeprg =
-  'cd build && CCACHE_BASEDIR=${PWD}; echo "ninja build (CCACHE_BASEDIR set) (MAKE_CORES:${MAKE_CORES})"; ninja -j${MAKE_CORES}'
+vim.opt.exrc = true
+vim.opt.secure = true
+
+-- NOTE: this should be defined in a .nvimrc project file
+-- vim.opt.makeprg =
+--   'cd build && CCACHE_BASEDIR=${PWD}; echo "ninja build (CCACHE_BASEDIR set) (MAKE_CORES:${MAKE_CORES})"; ninja -j${MAKE_CORES}'
 
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
