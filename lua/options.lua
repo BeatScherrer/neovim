@@ -70,6 +70,7 @@ vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
+-- allow project specific options
 vim.opt.exrc = true
 vim.opt.secure = true
 
@@ -89,11 +90,20 @@ vim.api.nvim_create_user_command("Format", function(args)
   require("conform").format({ async = true, lsp_fallback = true, range = range })
 end, { range = true })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- Diagnostic signs
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+--- Lsp Diagnostic signs
+local signs = { Error = " ", Warning = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "LspDiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 
 -- Neovide
 vim.g.neovide_position_animation_length = 0.10
