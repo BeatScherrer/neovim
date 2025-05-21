@@ -130,7 +130,13 @@ return {
           cmd = {
             "clangd-19",
             "--clang-tidy",
+            "--clang-tidy-checks=*",
+            "--all-scopes-completion",
+            "--cross-file-rename",
+            "--completion-style=detailed",
             "--header-insertion-decorators",
+            "--header-insertion=iwyu",
+            "--pch-storage=memory",
             "--compile-commands-dir=build",
           },
         },
