@@ -116,7 +116,7 @@ return {
     }
     dap.adapters.lldb = {
       type = "executable",
-      command = "/usr/bin/lldb-dap-19", -- adjust as needed, must be absolute path
+      command = "/usr/bin/lldb-dap-20", -- adjust as needed, must be absolute path
       name = "lldb",
     }
 
@@ -176,68 +176,11 @@ return {
     end
 
     dap.configurations.cpp = {
-      -- {
-      --   name = "Remote gdb server attach (:7777)",
-      --   type = "cppdbg",
-      --   request = "launch",
-      --   MIMode = "gdb",
-      --   cwd = vim.fn.getcwd(),
-      --   miDebuggerServerAddress = function()
-      --     local host = vim.fn.input("Host to debug (port 7777): ", "localhost")
-      --     return host .. ":7777"
-      --   end,
-      --   miDebuggerPath = "/usr/bin/gdb",
-      --   program = function()
-      --     -- TODO: maybe we can attach the gdbserver on the remote as part of launching the debugger
-      --
-      --     -- local target = "root@" .. miDebuggerServerAddress
-      --     local executable =
-      --       vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
-      --     -- os.execute("ssh -c root@" .. target .. "gdbserver --attach :7777 $(pgrep " .. executable")")
-      --     return executable
-      --   end,
-      -- },
-      -- {
-      --   name = "Local gdb server attach (:7777)",
-      --   type = "cppdbg",
-      --   request = "launch",
-      --   MIMode = "gdb",
-      --   miDebuggerServerAddress = function()
-      --     return "localhost:7777"
-      --   end,
-      --   miDebuggerPath = "/usr/bin/gdb",
-      --   cwd = "${workspaceFolder}",
-      --   program = function()
-      --     return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
-      --   end,
-      -- },
-      -- {
-      --   name = "codelldb attach",
-      --   type = "codelldb",
-      --   request = "attach",
-      --   program = function()
-      --     return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
-      --   end,
-      --   cwd = "${workspaceFolder}",
-      --   stopOnEntry = false,
-      -- },
-      -- {
-      --   name = "Attach to lldbserver :1234",
-      --   type = "cppdbg",
-      --   request = "launch",
-      --   MIMode = "lldb",
-      --   miDebuggerServerAddress = "localhost:1234",
-      --   miDebuggerPath = "/usr/bin/lldb-19",
-      --   cwd = "${workspaceFolder}",
-      --   program = function()
-      --     return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
-      --   end,
-      -- },
       {
         name = "lldb launch",
         type = "lldb",
         request = "launch",
-        miDebuggerPath = "/usr/bin/lldb-dap-19",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
@@ -249,7 +192,7 @@ return {
         name = "lldb attach",
         type = "lldb",
         request = "attach",
-        miDebuggerPath = "/usr/bin/lldb-dap-19",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
