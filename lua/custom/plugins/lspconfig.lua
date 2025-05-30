@@ -128,7 +128,7 @@ return {
         },
         clangd = {
           cmd = {
-            "clangd-19",
+            "clangd-20",
             "--clang-tidy",
             "--clang-tidy-checks=*",
             "--all-scopes-completion",
