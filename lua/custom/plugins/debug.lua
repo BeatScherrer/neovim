@@ -182,7 +182,7 @@ return {
         request = "launch",
         miDebuggerPath = "/usr/bin/lldb-dap-20",
         program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
