@@ -28,6 +28,12 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- Resize: TODO: enhance this to be dynamic. i.e. resize in the arrow direction
+vim.keymap.set("n", "<C-Up>", "<cmd>horizontal resize +5<cr>", { desc = "Increase size horizontally" })
+vim.keymap.set("n", "<C-Down>", "<cmd>horizontal resize -5<cr>", { desc = "Decrease size horizontally" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +5<cr>", { desc = "Increase size vertically" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>", { desc = "Decrease size vertically" })
+
 vim.keymap.set("n", "<leader>e", "Neotree toggle", { desc = "Open Neotree" })
 
 vim.keymap.set("n", "<M-o>", "<cmd>ClangdSwitchSourceHeader<cr>")
