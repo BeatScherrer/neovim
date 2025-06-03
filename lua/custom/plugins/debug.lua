@@ -186,7 +186,10 @@ return {
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
-        args = {},
+        args = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
+        runInTerminal = false,
       },
       {
         name = "lldb attach",
@@ -198,7 +201,9 @@ return {
         end,
         cwd = "${workspaceFolder}",
         stopOnEntry = false,
-        args = {},
+        args = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
       },
     }
 
