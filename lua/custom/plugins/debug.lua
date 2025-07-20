@@ -65,6 +65,13 @@ return {
 
     -- Add your own debuggers here
     "leoluz/nvim-dap-go",
+
+    -- NOTE: To install
+    --git clone https://github.com/microsoft/vscode-js-debug ~/.local/share/nvim/vscode-js-debug
+    -- cd ~/.local/share/nvim/vscode-js-debug
+    -- npm install
+    -- npm run compile
+    "mxsdev/nvim-dap-vscode-js",
   },
   -- stylua: ignore start
   keys = {
@@ -177,10 +184,25 @@ return {
 
     dap.configurations.cpp = {
       {
+        name = "lldb coredump",
+        type = "lldb",
+        request = "launch",
+        miDebuggerPath = "lldb-dap-20",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        runInTerminal = false,
+        coreDumpPath = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
+      },
+      {
         name = "lldb launch",
         type = "lldb",
         request = "launch",
-        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        miDebuggerPath = "lldb-dap-20",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
         end,
@@ -195,7 +217,7 @@ return {
         name = "lldb attach",
         type = "lldb",
         request = "attach",
-        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        miDebuggerPath = "lldb-dap-20",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
@@ -204,6 +226,31 @@ return {
         args = function()
           return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
         end,
+      },
+    }
+
+    dap.configurations.typescript = {
+      {
+        type = "pwa-chrome",
+        request = "launch",
+        name = "Launch Chrome against localhost",
+        url = "http://localhost:4200", -- Angular default port
+        webRoot = "${workspaceFolder}",
+        sourceMaps = true,
+        protocol = "inspector",
+        runtimeExecutable = "/usr/bin/google-chrome", -- adjust for your OS
+        skipFiles = { "<node_internals>/**" },
+      },
+      {
+        type = "pwa-chrome",
+        request = "launch",
+        name = "Launch chrome for aquila",
+        url = "http://localhost:1420", -- Angular default port
+        webRoot = "${workspaceFolder}",
+        sourceMaps = true,
+        protocol = "inspector",
+        runtimeExecutable = "/usr/bin/google-chrome", -- adjust for your OS
+        skipFiles = { "<node_internals>/**" },
       },
     }
 
