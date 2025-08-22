@@ -67,7 +67,7 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-vim.opt.spell = true
+vim.opt.spell = false
 vim.opt.spelllang = "en_us"
 
 -- allow project specific options
@@ -104,7 +104,6 @@ for type, icon in pairs(signs) do
   local hl = "LspDiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
 
 -- Neovide
 vim.g.neovide_position_animation_length = 0.10
