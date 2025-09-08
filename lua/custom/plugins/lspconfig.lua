@@ -155,7 +155,17 @@ return {
         ts_ls = {},
         angularls = {},
         omnisharp = {},
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoImportCompletions = true;
+                autoSearchPaths = true
+              }
+            }
+          }
+        },
+        pylsp = {},
         dockerls = {},
         lemminx = {},
         bashls = {},
