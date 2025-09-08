@@ -227,6 +227,35 @@ return {
           return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
         end,
       },
+      {
+        name = "lldb attach remote",
+        type = "lldb",
+        request = "attach",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+        end,
+        attachCommands = {
+          "gdb-remote robot-201.mt-robot.com:1234",
+        },
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
+      },
+      {
+        name = "lldb coredump",
+        type = "lldb",
+        request = "launch",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "path")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        runInTerminal = false,
+      },
     }
 
     dap.configurations.typescript = {
