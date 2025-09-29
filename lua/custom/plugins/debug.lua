@@ -228,7 +228,7 @@ return {
         end,
       },
       {
-        name = "lldb attach remote",
+        name = "lldb attach robot (start server)",
         type = "lldb",
         request = "attach",
         miDebuggerPath = "/usr/bin/lldb-dap-20",
@@ -236,7 +236,75 @@ return {
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
         end,
         attachCommands = {
-          "gdb-remote robot-201.mt-robot.com:1234",
+          function()
+            local port = "1234"
+            local robotId = vim.fn.input("Robot ID: ")
+            local host = "robot-" .. robotId .. ".mt-robot.com"
+            local endpoint = host .. ":" .. port
+
+            -- Start the lldb-server via SSH
+            print("Starting lldb-server on " .. host .. "...")
+            -- TODO: get the program name here!
+            local ssh_cmd = string.format(
+              'ssh %s "pkill -f lldb-server; lldb-server-19 gdbserver *:' .. port .. ' --attach-name TODO &"',
+              "mtr@" .. host
+            )
+            local result = vim.fn.system(ssh_cmd)
+            if vim.v.shell_error ~= 0 then
+              error("Failed to start lldb-server: " .. result)
+            end
+
+            -- Give it some time to start
+            vim.fn.system("sleep 2")
+
+            print("Connecting to " .. endpoint)
+            return "gdb-remote " .. endpoint
+          end,
+        },
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
+      },
+      {
+        name = "lldb attach robot",
+        type = "lldb",
+        request = "attach",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+        end,
+        attachCommands = {
+          function()
+            local port = "7777"
+            local robotId = vim.fn.input("Robot ID: ")
+            local host = "robot-" .. robotId .. ".mt-robot.com"
+            local endpoint = host .. ":" .. port
+
+            print("Connecting to " .. endpoint)
+            return "gdb-remote " .. endpoint
+          end,
+        },
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = function()
+          return vim.fn.split(vim.fn.input("Arguments: "), " ", true)
+        end,
+      },
+      {
+        name = "lldb attach master server",
+        type = "lldb",
+        request = "attach",
+        miDebuggerPath = "/usr/bin/lldb-dap-20",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/live_env/bin/service/", "file")
+        end,
+        attachCommands = {
+          function()
+            local msId = vim.fn.input("Master server ID: ")
+            return "gdb-remote ms-" .. msId .. ".mt-robot.com:1234"
+          end,
         },
         cwd = "${workspaceFolder}",
         stopOnEntry = false,

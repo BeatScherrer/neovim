@@ -64,7 +64,7 @@ return {
         typescript = { "biome" },
         json = { "prettier" },
         html = { "prettier" },
-        python = { "pyright" },
+        python = { "autopep8" },
         sh = { "mt_shfmt" },
         bash = { "mt_shfmt" },
       },

@@ -67,8 +67,8 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.opt.foldlevelstart = 99
 vim.opt.fillchars = [[diff: ,eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-vim.opt.spell = false
-vim.opt.spelllang = "en_us"
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us", "de_CH" }
 
 -- allow project specific options
 vim.opt.exrc = true
