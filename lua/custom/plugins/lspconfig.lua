@@ -190,11 +190,15 @@ return {
       --  You can press `g?` for help in this menu.
       require("mason").setup()
 
-      -- This sets up the servers with lspconfig only, without mason
-      local lspconfig = require("lspconfig")
+      -- Setup servers using vim.lsp.config (Neovim 0.11+)
       for server_name, options in pairs(servers) do
-        lspconfig[server_name].setup(options)
+        -- Merge capabilities into options
+        options.capabilities = vim.tbl_deep_extend("force", {}, capabilities, options.capabilities or {})
+        vim.lsp.config(server_name, options)
       end
+
+      -- Enable all configured servers
+      vim.lsp.enable(vim.tbl_keys(servers))
 
       -- WARN: This looks troublesome if lsps are used that are not installed with mason...
       --       for NixOS and direnv the lsp are not installed with mason and therefore this

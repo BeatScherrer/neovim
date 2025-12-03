@@ -17,9 +17,6 @@ return {
       },
       current_line_blame = true,
       current_line_blame_formatter = "<author>, <author_time:%d.%m.%Y> - <summary>",
-      current_line_blame_formatter_opts = {
-        relative_time = false,
-      },
 
       on_attach = function(bufnr)
         local gitsigns = require("gitsigns")
