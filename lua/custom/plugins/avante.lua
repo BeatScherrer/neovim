@@ -5,40 +5,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "ollama",
-    openai = {
-      endpoint = "https://api.openai.com/v1",
-      model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-      timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-      temperature = 0,
-      max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
-    },
-    --- @type AvanteProvider
-    ollama = {
-      -- api_key_name = "",
-      model = "codestral",
-      -- parse_curl_args = function(opts, code_opts)
-      --   return {
-      --     url = opts.endpoint .. "/chat/completions",
-      --     headers = {
-      --       ["Accept"] = "application/json",
-      --       ["Content-Type"] = "application/json",
-      --       ["x-api-key"] = "ollama",
-      --     },
-      --     body = {
-      --       model = opts.model,
-      --       -- TODO:
-      --       messages = require("avante.providers").copilot.parse_messages(code_opts), -- you can make your own message, but this is very advanced
-      --       max_tokeans = 2048,
-      --       stream = true,
-      --     },
-      --   }
-      -- end,
-      -- parse_response_data = function(data_stream, event_state, opts)
-      --   require("avante.providers").openai.parse_response(data_stream, event_state, opts)
-      -- end,
-    },
+    provider = "claude-code",
     behaviour = {
       auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
@@ -47,14 +14,43 @@ return {
       support_paste_from_clipboard = true,
       enable_cursor_planning_mode = true, -- https://github.com/yetone/avante.nvim/blob/main/cursor-planning-mode.md
     },
-    rag_service = {
-      enabled = false, -- Enables the RAG service
-      host_mount = os.getenv("HOME"), -- Host mount path for the rag service
-      provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
-      llm_model = "", -- The LLM model to use for RAG service
-      embed_model = "", -- The embedding model to use for RAG service
-      endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
+    acp_providers = {
+      ["claude-code"] = {
+        command = "claude-code-acp",
+        -- args = { "@zed-industries/claude-code-acp" },
+        env = {
+          NODE_NO_WARNINGS = "1",
+          ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
+        },
+      },
+    -- ["gemini-cli"] = {
+    --   command = "gemini",
+    --   args = { "--experimental-acp" },
+    --   env = {
+    --     NODE_NO_WARNINGS = "1",
+    --     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
+    --   },
+    -- },
+    -- ["goose"] = {
+    --   command = "goose",
+    --   args = { "acp" },
+    -- },
+    -- ["codex"] = {
+    --   command = "codex-acp",
+    --   env = {
+    --     NODE_NO_WARNINGS = "1",
+    --     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
+    --   },
+    -- },
     },
+    -- rag_service = {
+    --   enabled = false, -- Enables the RAG service
+    --   host_mount = os.getenv("HOME"), -- Host mount path for the rag service
+    --   provider = "openai", -- The provider to use for RAG service (e.g. openai or ollama)
+    --   llm_model = "", -- The LLM model to use for RAG service
+    --   embed_model = "", -- The embedding model to use for RAG service
+    --   endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
+    -- },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -70,7 +66,12 @@ return {
     -- "ibhagwan/fzf-lua", -- for file_selector provider fzf
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      "zbirenbaum/copilot.lua",
+      lazy = true,
+      cmd = "Copilot",
+      event = "InsertEnter",
+    },
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
