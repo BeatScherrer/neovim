@@ -6,6 +6,7 @@ return {
     -- add any opts here
     -- for example
     provider = "claude-code",
+    auto_suggestions_provider = "claude",
     behaviour = {
       auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
@@ -23,25 +24,25 @@ return {
           ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
         },
       },
-    -- ["gemini-cli"] = {
-    --   command = "gemini",
-    --   args = { "--experimental-acp" },
-    --   env = {
-    --     NODE_NO_WARNINGS = "1",
-    --     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
-    --   },
-    -- },
-    -- ["goose"] = {
-    --   command = "goose",
-    --   args = { "acp" },
-    -- },
-    -- ["codex"] = {
-    --   command = "codex-acp",
-    --   env = {
-    --     NODE_NO_WARNINGS = "1",
-    --     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
-    --   },
-    -- },
+      -- ["gemini-cli"] = {
+      --   command = "gemini",
+      --   args = { "--experimental-acp" },
+      --   env = {
+      --     NODE_NO_WARNINGS = "1",
+      --     GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
+      --   },
+      -- },
+      -- ["goose"] = {
+      --   command = "goose",
+      --   args = { "acp" },
+      -- },
+      -- ["codex"] = {
+      --   command = "codex-acp",
+      --   env = {
+      --     NODE_NO_WARNINGS = "1",
+      --     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
+      --   },
+      -- },
     },
     -- rag_service = {
     --   enabled = false, -- Enables the RAG service
@@ -51,6 +52,26 @@ return {
     --   embed_model = "", -- The embedding model to use for RAG service
     --   endpoint = "https://api.openai.com/v1", -- The API endpoint for RAG service
     -- },
+  },
+  providers = {
+    {
+      claude = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-3-5-sonnet-20241022",
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 4096,
+        },
+      },
+      ["claude-opus"] = {
+        endpoint = "https://api.anthropic.com",
+        model = "claude-opus-4-5-20251101",
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 4096,
+        },
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
