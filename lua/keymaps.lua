@@ -36,7 +36,15 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -5<cr>", { desc = "Decreas
 
 vim.keymap.set("n", "<leader>e", "Neotree toggle", { desc = "Open Neotree" })
 
-vim.keymap.set("n", "<M-o>", "<cmd>ClangdSwitchSourceHeader<cr>")
+vim.keymap.set("n", "<A-o>", function()
+  local params = { uri = vim.uri_from_bufnr(0) }
+  vim.lsp.buf_request(0, "textDocument/switchSourceHeader", params, function(err, result)
+    if err or not result or result == "" then
+      return
+    end
+    vim.cmd.edit(vim.uri_to_fname(result))
+  end)
+end, { desc = "Switch between source/header" })
 
 vim.api.nvim_set_keymap("c", "w!!", "w !sudo tee > /dev/null %", { noremap = true })
 
